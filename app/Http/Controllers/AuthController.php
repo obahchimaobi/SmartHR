@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class AuthController extends Controller
+{
+    //
+    public function register()
+    {
+        return view("auth.register");
+    }
+
+    public function user_register(Request $request)
+    {
+        $request->validate([
+            
+        ]);
+    }
+}
