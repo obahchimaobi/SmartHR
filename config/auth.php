@@ -1,4 +1,6 @@
 <?php
+use App\Models\Employee;
+use App\Models\HR;
 
 return [
 
@@ -40,6 +42,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'hr' => [
+            'driver' => 'session',
+            'provider' => 'hrs',
+        ],
+
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ]
     ],
 
     /*
@@ -64,6 +76,16 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+
+        'hrs' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', HR::class),
+        ], 
+
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', Employee::class),
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

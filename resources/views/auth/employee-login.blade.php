@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    HR Login
+    Employee Login
 @endsection
 
 @section('content')
@@ -9,9 +9,29 @@
         <img src="{{ asset('icons/smarthr.webp') }}" alt="" style="width: 50px;" class="rounded-circle mt-2">
     </div>
 
+    @if (session('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "{{ session('success') }}"
+            });
+        </script>
+    @endif
+
     <div class="container d-flex" style="height: 80vh">
         <div class="col-xl-5 col-12 col-lg-6 col-md-7 m-auto border shadow rounded p-3">
-            <h5 class="text-center mb-3">HR Login</h5>
+            <h5 class="text-center mb-3">Employee Login</h5>
             <form action="">
                 @method('post')
                 @csrf
@@ -19,16 +39,24 @@
                 <label for="">Email</label>
                 <input type="email" class="form-control shadow-none mt-1" name="email_login" @required(true)>
 
+                @error('email_login')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+
                 <label for="" class="mt-3">Password</label>
                 <input type="password" class="form-control shadow-none mt-1" name="password_login" @required(true)>
+
+                @error('password_login')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
 
                 <div class="mt-3 d-grid">
                     <button class="btn btn-success" type="submit">Login</button>
                 </div>
 
                 <div class="mt-4 text-center">
-                    <h6 style="font-size: 14px; font-weight: normal;">Not HR? Login as an <a
-                            href="{{ route('employee.login') }}" class="text-decoration-none">Employee</a></h6>
+                    <h6 style="font-size: 14px; font-weight: normal;">Don't have an account? <a
+                            href="{{ route('employee.register') }}" class="text-decoration-none">create one</a></h6>
 
                     <h6 style="font-size: 14px; font-weight: normal;">Forgot your password? <a href="#"
                             class="text-decoration-none">reset it</a></h6>

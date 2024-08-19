@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,4 +9,9 @@ Route::get('/', function () {
 });
 
 Route::get('/', [HomeController::class,'index'])->name('home');
-Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+
+// Employee Routings
+Route::get('/employee-register', [EmployeeController::class, 'employee_register'])->name('employee.register');
+Route::get('/employee-login', [EmployeeController::class, 'employee_login'])->name('employee.login');
+
+Route::post('/employee-register', [EmployeeController::class, 'register'])->name('employee-register');
