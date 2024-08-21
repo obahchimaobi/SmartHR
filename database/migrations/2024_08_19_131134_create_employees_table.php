@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('employment_status');
             $table->date('date_joined');
             $table->string('employment_type');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('employee_email')->unique();
+            $table->string('employee_password');
             $table->string('profile_picture')->nullable();
             $table->timestamps();
         });

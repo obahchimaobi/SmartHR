@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     use HasFactory;
 
@@ -22,8 +23,8 @@ class Employee extends Model
         'employment_status',
         'date_joined',
         'employment_type',
-        'email',
-        'password',
+        'employee_email',
+        'employee_password',
         'profile_picture',
     ];
 
@@ -33,6 +34,11 @@ class Employee extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'employee_password',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->employee_password;
+    }
 }

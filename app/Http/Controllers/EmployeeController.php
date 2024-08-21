@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+// use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
@@ -31,10 +34,12 @@ class EmployeeController extends Controller
             'employment_status' => 'required',
             'date_joined' => 'required',
             'employment_type' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed|min:6',
+            'employee_email' => 'required',
+            'employee_password' => 'required|confirmed|min:6',
             // 'profile_picture' => 'required|image:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $fields['employee_password'] = Hash::make($request->employee_password);
 
         if ($request->hasFile('profile_picture')) {
 
@@ -60,6 +65,27 @@ class EmployeeController extends Controller
 
         Employee::create($fields);
 
-        return redirect()->route('employee.login')->with('success, Employee registered successfully');
+        return redirect()->route('employee.login')->with('success', 'Employee registered successfully');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'employee_email' => 'required',
+            'employee_password' => 'required',
+        ]);
+
+        if (Auth::guard('employee')->attempt(['employee_email' => $request->employee_email, 'password' => $request->employee_password])) {
+            
+            return redirect()->route('employee.dashboard')->with('success', 'Login Successful');
+        } else {
+
+            return redirect()->back()->with('error', 'Invalid Credentials');
+        }
+    }
+
+    public function employee_dashboard()
+    {
+        return view('components.employee-dashboard');
     }
 }

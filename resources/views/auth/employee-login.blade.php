@@ -29,24 +29,43 @@
         </script>
     @endif
 
+    @if (session('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "{{ session('error') }}"
+            });
+        </script>
+    @endif
+
     <div class="container d-flex" style="height: 80vh">
         <div class="col-xl-5 col-12 col-lg-6 col-md-7 m-auto border shadow rounded p-3">
             <h5 class="text-center mb-3">Employee Login</h5>
-            <form action="">
-                @method('post')
+            <form action="{{ route('employer-login') }}" method="post">
                 @csrf
 
                 <label for="">Email</label>
-                <input type="email" class="form-control shadow-none mt-1" name="email_login" @required(true)>
+                <input type="email" class="form-control shadow-none mt-1" name="employee_email" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
-                @error('email_login')
+                @error('employee_email')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 
                 <label for="" class="mt-3">Password</label>
-                <input type="password" class="form-control shadow-none mt-1" name="password_login" @required(true)>
+                <input type="password" class="form-control shadow-none mt-1" name="employee_password" @required(true)>
 
-                @error('password_login')
+                @error('employee_password')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 

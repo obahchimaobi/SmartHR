@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-xl-6 mt-3">
                         <label for="">First Name</label>
-                        <input type="text" class="form-control shadow-none mt-1" name="first_name" @required(true)>
+                        <input type="text" class="form-control shadow-none mt-1" value="{{ old('first_name') }}" name="first_name" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
                         @error('first_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -45,7 +45,7 @@
 
                     <div class="col-xl-6 mt-3">
                         <label for="">Last Name</label>
-                        <input type="text" class="form-control shadow-none mt-1" name="last_name" @required(true)>
+                        <input type="text" class="form-control shadow-none mt-1" name="last_name" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
                         @error('last_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -54,7 +54,7 @@
 
                     <div class="col-xl-6 mt-3">
                         <label for="">Employee Id</label>
-                        <input type="text" class="form-control shadow-none mt-1" name="employee_id" @required(true)>
+                        <input type="text" class="form-control shadow-none mt-1" name="employee_id" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
                         @error('employee_id')
                             <span class="text-danger">{{ $message }}</span>
@@ -64,7 +64,7 @@
                     <div class="col-xl-6 mt-3">
                         <label for="">Department</label>
                         <div>
-                            <select class="form-select form-select-md mt-1 shadow-none" name="department" id="">
+                            <select class="form-select form-select-md mt-1 shadow-none" style="font-family: 'Roboto', sans-serif;" name="department" id="">
                                 <option selected>Select one</option>
                                 <option value="New Delhi">New Delhi</option>
                             </select>
@@ -78,7 +78,7 @@
                     <div class="col-xl-6 mt-3">
                         <label for="">Employment Status</label>
                         <div>
-                            <select class="form-select form-select-md mt-1 shadow-none" name="employment_status"
+                            <select class="form-select form-select-md mt-1 shadow-none" style="font-family: 'Roboto', sans-serif;" name="employment_status"
                                 id="">
                                 <option selected>Select one</option>
                                 <option value="Full Time">Full Time</option>
@@ -94,7 +94,7 @@
 
                     <div class="col-xl-6 mt-3">
                         <label for="">Date Joined</label>
-                        <input type="date" name="date_joined" id="" class="form-control mt-1 shadow-none">
+                        <input type="date" name="date_joined" id="" class="form-control mt-1 shadow-none" style="font-family: 'Roboto', sans-serif;">
 
                         @error('date_joined')
                             <span class="text-danger">{{ $message }}</span>
@@ -104,7 +104,7 @@
                     <div class="col-xl-12 mt-3">
                         <label for="">Employment Type</label>
                         <div>
-                            <select class="form-select form-select-md mt-1 shadow-none" name="employment_type"
+                            <select class="form-select form-select-md mt-1 shadow-none" name="employment_type" style="font-family: 'Roboto', sans-serif;"
                                 id="">
                                 <option selected>Select one</option>
                                 <option value="Permanent">Permanent</option>
@@ -119,25 +119,25 @@
 
                     <div class="col-xl-12 mt-3">
                         <label for="">Email</label>
-                        <input type="email" class="form-control shadow-none mt-1" name="email" @required(true)>
+                        <input type="email" class="form-control shadow-none mt-1" name="employee_email" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
-                        @error('email')
+                        @error('employee_email')
                             <span class="text-danger">{{ $messagge }}</span>
                         @enderror
                     </div>
 
                     <div class="col-xl-6">
                         <label for="" class="mt-3">Password</label>
-                        <input type="password" class="form-control shadow-none mt-1" name="password" @required(true)>
+                        <input type="password" class="form-control shadow-none mt-1" name="employee_password" style="font-family: 'Roboto', sans-serif;" @required(true)>
 
-                        @error('password')
+                        @error('employee_password')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="col-xl-6">
                         <label for="" class="mt-3">Confirm Password</label>
-                        <input type="password" class="form-control shadow-none mt-1" name="password_confirmation"
+                        <input type="password" class="form-control shadow-none mt-1" style="font-family: 'Roboto', sans-serif;" name="employee_password_confirmation"
                             @required(true)>
 
                         @error('password_confirmation')
